@@ -29,4 +29,10 @@ public class Context {
 		
 	} // end method getPropertyValue
 	
+	public Map<Object, Object> getProperties() {
+		
+		return properties;
+		
+	} // end method getProperties
+	
 } // end class Context

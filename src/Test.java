@@ -7,17 +7,16 @@ public class Test {
 
 		Map<Object, Object> properties = new LinkedHashMap<Object, Object>();
 		
-		properties.put("Autenticado", new Boolean(false));
-		properties.put("Cadastrado", new Boolean(true));
+		properties.put("Disciplina 1", new HorarioDisciplina(10, 12));
+		properties.put("Disciplina 2", new HorarioDisciplina(11, 13));
 		
 		Context context = new Context(properties);
 		
-		Rule autenticado = new RuleAutenticado("Autenticado");
-		Rule cadastrado = new RuleCadastrado("Cadastrado");
+		Rule conflitoHorario = new RuleConflitoHorario("Conflito de horário");
 		
 		Analyzer analyzer = new Analyzer(context);
-		analyzer.addRule(autenticado);
-		analyzer.addRule(cadastrado);
+		//analyzer.addRule(autenticado);
+		//analyzer.addRule(cadastrado);
 		
 		System.out.println(analyzer.analyze());
 		
