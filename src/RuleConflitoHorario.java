@@ -26,9 +26,7 @@ public class RuleConflitoHorario extends Rule {
 					HorarioDisciplina hd2 = 
 							(HorarioDisciplina) context.getProperty(disciplinas.get(j));
 					
-					if (hd1.getHorarioInicio() < hd2.getHorarioInicio() && 
-							hd1.getHorarioFim() > hd2.getHorarioInicio() && 
-							hd1.getHorarioFim() < hd2.getHorarioFim()) {
+					if (interfere(hd1, hd2)) {
 						
 						setQualityLevel(Status.BAD);
 						return;
@@ -44,5 +42,19 @@ public class RuleConflitoHorario extends Rule {
 		setQualityLevel(Status.GOOD);
 		
 	} // end method apply
+	
+	public boolean interfere(HorarioDisciplina hd1, HorarioDisciplina hd2) {
+		
+		if (hd1.getHorarioInicio() < hd2.getHorarioInicio() && 
+				hd1.getHorarioFim() > hd2.getHorarioInicio() && 
+				hd1.getHorarioFim() < hd2.getHorarioFim()) {
+			
+			return true;
+			
+		}
+		
+		return false;
+		
+	} // end method interfere
 	
 } // end class RuleConflitoHorario
