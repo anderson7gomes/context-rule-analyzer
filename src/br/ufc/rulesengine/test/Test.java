@@ -5,7 +5,7 @@ import java.util.Map;
 
 import br.ufc.rulesengine.core.Analyzer;
 import br.ufc.rulesengine.core.Context;
-import br.ufc.rulesengine.core.Rule;
+import br.ufc.rulesengine.core.BasicRule;
 
 public class Test {
 
@@ -13,12 +13,12 @@ public class Test {
 
 		Map<Object, Object> properties = new LinkedHashMap<Object, Object>();
 		
-		properties.put("Disciplina 1", new HorarioDisciplina(11, 13));
+		properties.put("Disciplina 1", new HorarioDisciplina(11, 14));
 		properties.put("Disciplina 2", new HorarioDisciplina(13, 15));
 		
 		Context context = new Context(properties);
 		
-		Rule conflitoHorario = new RuleConflitoHorario("Conflito de horário");
+		BasicRule conflitoHorario = new RuleConflitoHorario("Conflito de horário");
 		
 		Analyzer analyzer = new Analyzer(context);
 		analyzer.addRule(conflitoHorario);

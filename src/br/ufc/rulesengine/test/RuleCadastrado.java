@@ -1,10 +1,10 @@
 package br.ufc.rulesengine.test;
 
 import br.ufc.rulesengine.core.Context;
-import br.ufc.rulesengine.core.Rule;
+import br.ufc.rulesengine.core.BasicRule;
 import br.ufc.rulesengine.core.Status;
 
-public class RuleCadastrado extends Rule {
+public class RuleCadastrado extends BasicRule {
 
 	public RuleCadastrado(String identifier) {
 		
@@ -13,11 +13,11 @@ public class RuleCadastrado extends Rule {
 	} // end constructor RuleCadastrado
 	
 	@Override
-	public void apply(Context context) {
+	public Status apply(Context context) {
 		
 		Boolean cadastrado = (Boolean) context.getProperty("Cadastrado");
 		
-		setQualityLevel((cadastrado) ? Status.GOOD : Status.BAD);
+		return (cadastrado) ? Status.GOOD : Status.BAD;
 		
 	} // end method apply
 	

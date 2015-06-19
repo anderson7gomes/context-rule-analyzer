@@ -1,35 +1,7 @@
 package br.ufc.rulesengine.core;
 
-public abstract class Rule {
+public interface Rule {
 	
-	private Status qualityLevel = Status.NOT_SET;
-
-	private String identifier;
+	Status apply(Context context);
 	
-	public Rule(String identifier) {
-		
-		this.identifier = identifier;
-		
-	} // end constructor Rule
-	
-	public abstract void apply(Context context);
-	
-	protected void setQualityLevel(Status qualityLevel) {
-		
-		this.qualityLevel = qualityLevel;
-		
-	} // end method setQualityLevel
-	
-	public Status getQualityLevel() {
-		
-		return qualityLevel;
-		
-	} // end method getQualityLevel
-	
-	public String getIdentifier() {
-		
-		return identifier;
-		
-	} // end method getIdentifier
-	
-} // end class Rule
+} // end interface Rule

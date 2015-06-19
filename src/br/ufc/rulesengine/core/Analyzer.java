@@ -8,11 +8,11 @@ import java.util.Map;
 public class Analyzer {
 
 	Context context;
-	List<Rule> rules;
+	List<BasicRule> rules;
 	
 	Map<Object, Status> qualities;
 	
-	public Analyzer(Context context, List<Rule> rules) {
+	public Analyzer(Context context, List<BasicRule> rules) {
 		
 		this.context = context;
 		this.rules = rules;
@@ -23,11 +23,11 @@ public class Analyzer {
 	
 	public Analyzer(Context context) {
 		
-		this(context, new ArrayList<Rule>());
+		this(context, new ArrayList<BasicRule>());
 		
 	} // end constructor Analyzer
 	
-	public void addRule(Rule rule) {
+	public void addRule(BasicRule rule) {
 		
 		rules.add(rule);
 		
@@ -35,11 +35,9 @@ public class Analyzer {
 	
 	public Map<Object, Status> analyze() {
 		
-		for (Rule rule : rules) {
+		for (BasicRule rule : rules) {
 			
-			rule.apply(context);
-			
-			qualities.put(rule.getIdentifier(), rule.getQualityLevel());
+			qualities.put(rule.getIdentifier(), rule.apply(context));
 			
 		}
 		

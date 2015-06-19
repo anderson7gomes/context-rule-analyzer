@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.rulesengine.core.Context;
-import br.ufc.rulesengine.core.Rule;
+import br.ufc.rulesengine.core.BasicRule;
 import br.ufc.rulesengine.core.Status;
 
-public class RuleConflitoHorario extends Rule {
+public class RuleConflitoHorario extends BasicRule {
 
 	public RuleConflitoHorario(String identifier) {
 		
@@ -16,7 +16,7 @@ public class RuleConflitoHorario extends Rule {
 	} // end constructor RuleConflitoHorario
 	
 	@Override
-	public void apply(Context context) {
+	public Status apply(Context context) {
 		
 		List<Object> disciplinas = new ArrayList<Object>(context.getProperties().keySet());
 		
@@ -34,8 +34,7 @@ public class RuleConflitoHorario extends Rule {
 					
 					if (interfere(hd1, hd2)) {
 						
-						setQualityLevel(Status.BAD);
-						return;
+						return Status.BAD;
 						
 					}
 					
@@ -45,7 +44,7 @@ public class RuleConflitoHorario extends Rule {
 			
 		}
 		
-		setQualityLevel(Status.GOOD);
+		return Status.GOOD;
 		
 	} // end method apply
 	
