@@ -6,6 +6,7 @@ import java.util.List;
 import br.ufc.rulesengine.core.Context;
 import br.ufc.rulesengine.core.BasicRule;
 import br.ufc.rulesengine.core.Status;
+import br.ufc.rulesengine.core.PropertyNotValidException;;
 
 public class RuleConflitoHorario extends BasicRule {
 
@@ -20,21 +21,25 @@ public class RuleConflitoHorario extends BasicRule {
 		
 		List<Object> disciplinas = new ArrayList<Object>(context.getProperties().keySet());
 		
-		for (int i = 0; i < disciplinas.size(); i++) {
-			
-			HorarioDisciplina hd1 = 
-					(HorarioDisciplina) context.getProperty(disciplinas.get(i));
-			
-			for (int j = 0; j < disciplinas.size(); j++) {
+		try {
+		
+			for (int i = 0; i < disciplinas.size(); i++) {
 				
-				if (i != j) {
+				HorarioDisciplina hd1 = 
+						(HorarioDisciplina) check(context.getProperty(disciplinas.get(i)));
+				
+				for (int j = 0; j < disciplinas.size(); j++) {
 					
-					HorarioDisciplina hd2 = 
-							(HorarioDisciplina) context.getProperty(disciplinas.get(j));
-					
-					if (interfere(hd1, hd2)) {
+					if (i != j) {
 						
-						return Status.BAD;
+						HorarioDisciplina hd2 = 
+								(HorarioDisciplina) check(context.getProperty(disciplinas.get(j)));
+						
+						if (interfere(hd1, hd2)) {
+							
+							return Status.BAD;
+							
+						}
 						
 					}
 					
@@ -42,6 +47,8 @@ public class RuleConflitoHorario extends BasicRule {
 				
 			}
 			
+		} catch (PropertyNotValidException e) {
+			System.err.println(e.getMessage());
 		}
 		
 		return Status.GOOD;
@@ -61,5 +68,16 @@ public class RuleConflitoHorario extends BasicRule {
 		return false;
 		
 	} // end method interfere
+	
+	@Override
+	public Object check(Object prop) throws PropertyNotValidException {
+		
+		if (prop instanceof HorarioDisciplina) {		
+				return prop;
+		}
+		
+		throw new PropertyNotValidException();
+			
+	} // end method assign
 	
 } // end class RuleConflitoHorario

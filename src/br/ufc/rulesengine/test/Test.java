@@ -15,15 +15,19 @@ public class Test {
 		
 		properties.put("Disciplina 1", new HorarioDisciplina(11, 14));
 		properties.put("Disciplina 2", new HorarioDisciplina(13, 15));
+		properties.put("Autenticado", new Boolean(false));
+		properties.put("Cadastrado", new Boolean(true));
 		
 		Context context = new Context(properties);
 		
 		BasicRule conflitoHorario = new RuleConflitoHorario("Conflito de horário");
+		BasicRule autenticado = new RuleAutenticado("Autenticado");
+		BasicRule cadastrado = new RuleCadastrado("Cadastrado");
 		
 		Analyzer analyzer = new Analyzer(context);
 		analyzer.addRule(conflitoHorario);
-		//analyzer.addRule(autenticado);
-		//analyzer.addRule(cadastrado);
+		analyzer.addRule(autenticado);
+		analyzer.addRule(cadastrado);
 		
 		System.out.println(analyzer.analyze());
 		
