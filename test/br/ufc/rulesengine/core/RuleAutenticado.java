@@ -1,4 +1,4 @@
-package br.ufc.rulesengine.test;
+package br.ufc.rulesengine.core;
 
 import br.ufc.rulesengine.core.Context;
 import br.ufc.rulesengine.core.BasicRule;

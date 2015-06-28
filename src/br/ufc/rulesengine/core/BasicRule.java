@@ -10,7 +10,6 @@ public abstract class BasicRule implements Rule {
 		
 	} // end constructor Rule
 	
-	@Override
 	public abstract Status apply(Context context);
 
 	public abstract Object check(Object prop) throws PropertyNotValidException;
