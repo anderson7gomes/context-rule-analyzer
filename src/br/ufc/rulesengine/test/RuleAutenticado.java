@@ -14,7 +14,7 @@ public class RuleAutenticado extends BasicRule {
 	} // end constructor RuleAutenticado
 	
 	@Override
-	public Status apply(Context context) {
+	public boolean apply(Context context) {
 	
 		Boolean autenticado = null;
 		
@@ -26,7 +26,7 @@ public class RuleAutenticado extends BasicRule {
 			System.err.println(e.getMessage());
 		}
 		
-		return (autenticado) ? Status.GOOD : Status.BAD;
+		return (autenticado) ? true : false;
 		
  	} // end method apply
 	

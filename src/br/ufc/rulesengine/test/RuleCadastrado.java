@@ -14,7 +14,7 @@ public class RuleCadastrado extends BasicRule {
 	} // end constructor RuleCadastrado
 	
 	@Override
-	public Status apply(Context context) {
+	public boolean apply(Context context) {
 		
 		Boolean cadastrado = null;
 		
@@ -26,7 +26,7 @@ public class RuleCadastrado extends BasicRule {
 			System.err.println(e.getMessage());
 		}
 		
-		return (cadastrado) ? Status.GOOD : Status.BAD;
+		return (cadastrado) ? true : false;
 		
 	} // end method apply
 	

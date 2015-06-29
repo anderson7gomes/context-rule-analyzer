@@ -10,14 +10,14 @@ public class Analyzer {
 	Context context;
 	List<BasicRule> rules;
 	
-	Map<Object, Status> qualities;
+	Map<Object, Boolean> qualities;
 	
 	public Analyzer(Context context, List<BasicRule> rules) {
 		
 		this.context = context;
 		this.rules = rules;
 		
-		qualities = new LinkedHashMap<Object, Status>();
+		qualities = new LinkedHashMap<Object, Boolean>();
 		
 	} // end constructor Analyzer
 	
@@ -33,7 +33,7 @@ public class Analyzer {
 		
 	} // end method addRule
 	
-	public Map<Object, Status> analyze() {
+	public Map<Object, Boolean> analyze() {
 		
 		for (BasicRule rule : rules) {
 			

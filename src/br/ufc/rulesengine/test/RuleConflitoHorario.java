@@ -17,7 +17,7 @@ public class RuleConflitoHorario extends BasicRule {
 	} // end constructor RuleConflitoHorario
 	
 	@Override
-	public Status apply(Context context) {
+	public boolean apply(Context context) {
 		
 		List<Object> disciplinas = new ArrayList<Object>(context.getProperties().keySet());
 		
@@ -37,7 +37,7 @@ public class RuleConflitoHorario extends BasicRule {
 						
 						if (interfere(hd1, hd2)) {
 							
-							return Status.BAD;
+							return false;
 							
 						}
 						
@@ -51,7 +51,7 @@ public class RuleConflitoHorario extends BasicRule {
 			System.err.println(e.getMessage());
 		}
 		
-		return Status.GOOD;
+		return true;
 		
 	} // end method apply
 	
