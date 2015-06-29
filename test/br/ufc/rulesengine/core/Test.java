@@ -1,4 +1,4 @@
-package br.ufc.rulesengine.test;
+package br.ufc.rulesengine.core;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
